@@ -1,0 +1,297 @@
+/* PdfFlipBook.css /
+/ Style sheet cho component ImageFlipBook (dùng thư viện react-pageflip) */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-dark: #333;
+    --bg-light: #f5f5f5;
+    --page-bg-odd: #ede8ff;
+    --page-bg-even: #ffffff;
+    --error-bg: #ffe6e6;
+    --error-border: #ff7700;
+}
+/* --- 1. CONTAINER CHÍNH --- */
+.flipbook-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: transparent;
+    margin-top: 95px;
+    position: relative;
+    width: 590px;
+    height: 460px;
+    box-sizing: border-box;
+}
+/* --- 2. FLIPBOOK WRAPPER & CORE --- */
+.flipbook-wrapper {
+    position: relative;
+    margin: 20px 0;
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    overflow: hidden; /* Cắt lề khi lật trang */
+}
+/* Component HTMLFlipBook */
+.flipbook {
+    background: transparent !important;
+    border-radius: 10px;
+}
+/* --- 3. PAGE STYLING --- */
+.page {
+    background: var(--page-bg-even);
+    position: relative;
+    overflow: hidden;
+}
+.page:nth-child(odd) {
+    background: linear-gradient(135deg, var(--page-bg-odd) 0%, var(--page-bg-even) 100%);
+}
+.page:nth-child(even) {
+    background: linear-gradient(135deg, var(--page-bg-even) 0%, #f0f0f0 100%);
+}
+.page-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.page-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.page-number {
+    position: absolute;
+    bottom: 15px;
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+    background: rgba(255,255,255,0.8);
+    padding: 2px 8px;
+    border-radius: 10px;
+    transition: opacity 0.3s;
+}
+.page:nth-child(odd) .page-number {
+    right: 20px;
+}
+.page:nth-child(even) .page-number {
+    left: 20px;
+}
+/* --- 4. DESKTOP CONTROLS --- */
+/* .flipbook-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.navigation-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.control-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+.control-btn:hover:not(:disabled) {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+.control-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+} */
+
+.page-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    color: var(--text-dark);
+    min-width: 80px;
+    justify-content: center;
+}
+
+.current-page {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+/* .page-jump {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.jump-label {
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    margin-right: 8px;
+}
+.page-input {
+    width: 60px;
+    padding: 8px 12px;
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 600;
+    outline: none;
+}
+.page-input:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+} */
+
+/* --- 5. MOBILE CONTROLS --- */
+.mobile-controls {
+    display: none; /* Mặc định ẩn */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.mobile-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
+}
+.mobile-btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-1px);
+}
+.mobile-page-info {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* --- 6. LOADING & ERROR STATES --- /
+/ Đã sửa màu nền cho phù hợp với StoryDetailPage */
+.flipbook-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 750px;
+    max-width: 100%;
+    color: white;
+    background: linear-gradient(135deg, #8195e2 0%, #4a5aa4 100%);
+    border-radius: 15px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.3);
+    border-top: 4px solid #ffc000; /* Màu vàng cam nổi bật */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+/* .pdf-viewer-content {
+    width: 1000px;
+    height: 600px;
+} */
+
+.pfb-flipbook-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    width: 400px;
+    max-width: 100%;
+    color: var(--text-dark);
+    background: transparent;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.pfb-error-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.pfb-error-message, .pfb-error-title {
+    color: var(--text-dark);
+}
+
+.pfb-retry-btn.pfb-primary {
+    background: var(--primary-color);
+}
+
+.pfb-retry-btn.pfb-secondary {
+    background: #6c757d;
+}
+
+.pfb-error-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+/* --- 7. UTILITIES & RESPONSIVE --- */
+.page-indicator {
+    margin-top: 15px;
+    color: white;
+    font-weight: 600;
+    background: rgba(0,0,0,0.3);
+    padding: 8px 16px;
+    border-radius: 20px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 850px) {
+    /* Ẩn desktop controls */
+    .flipbook-controls {
+        display: none;
+    }
+
+    /* Hiện mobile controls */
+    .mobile-controls {
+        display: flex;
+    }
+
+    .flipbook-wrapper {
+        margin: 10px 0;
+        width: 90% !important; 
+        height: auto !important;
+        /* Điều chỉnh tỷ lệ khung hình cho đẹp mắt trên mobile */
+        aspect-ratio: 1.5 / 1; 
+    }
+}          

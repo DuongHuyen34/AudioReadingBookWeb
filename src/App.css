@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.lg-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: url('./assets/Bg_Login.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+
+/* Logo */
+.lg-logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.lg-logo img {
+  height: 70px;
+  width: auto;
+}
+
+/* Language Switch */
+.lg-lang-switch {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.lg-lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 70px;
+  height: 30px;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 3px solid #EFE3C8;
+  border-radius: 999px;
+  background: #4A2B29;
+  color: #EFE3C8;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lg-lang-btn img {
+  width: 18px;
+  height: 12px;
+  object-fit: cover;
+}
+
+.lg-lang-btn:hover {
+  transform: scale(1.05);
+}
+
+.lg-lang-btn.lg-active {
+  background: #EFE3C8;
+  border: 3px solid #4A2B29;
+  color: #4A2B29;
+}
+
+/* Right Panel */
+.lg-right-panel {
+  width: 52%;
+  height: 100%;
+  background: rgba(75, 53, 42, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0 60px;
+  max-width: 650px;
+  width: 100%;
+}
+
+/* Typography */
+.login-title {
+  font-family: "Alegreya", serif;
+  font-size: 48px;
+  font-weight: 200;
+  color: #EFE3C8;
+  line-height: 0.7;
+  margin-bottom: 20px;
+  align-self: center;
+  width: 100%;
+  text-align: left;
+}
+
+.login-note {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 200;
+  font-style: italic;
+  color: #EFE3C8;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  align-self: center;
+  width: 100%;
+  text-align: left;
+}
+
+/* Form Styles */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lg-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.lg-form-label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #EFE3C8;
+  margin-bottom: 3px;
+}
+
+.lg-form-input {
+  padding: 12px 20px;
+  border: 2px solid #EFE3C8;
+  border-radius: 8px;
+  background: transparent;
+  color: #EFE3C8;
+  font-family: "Alegreya", serif;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.lg-form-input::placeholder {
+  color: rgba(239, 227, 200, 0.7);
+}
+
+.lg-form-input:focus {
+  outline: none;
+  border-color: #e6d8b9;
+  background: rgba(239, 227, 200, 0.1);
+}
+
+/* Password Input Container */
+.lg-password-input-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid #EFE3C8;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.lg-password-input-container:focus-within {
+  border-color: #e6d8b9;
+  background: rgba(239, 227, 200, 0.1);
+}
+
+.lg-password-input {
+  padding: 12px 20px;
+  border: none;
+  background: transparent;
+  color: #EFE3C8;
+  font-family: "Alegreya", serif;
+  font-size: 20px;
+  width: 100%;
+  outline: none;
+  flex: 1;
+}
+
+.lg-password-input::placeholder {
+  color: rgba(239, 227, 200, 0.7);
+}
+
+.lg-password-toggle {
+  background: none;
+  border: none;
+  color: #EFE3C8;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.lg-password-toggle:hover {
+  background: rgba(239, 227, 200, 0.15);
+}
+
+/* Buttons */
+.auth-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.auth-btn {
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  border: none;
+  background: #EFE3C8;
+  color: #4B352A;
+  margin-top: 10px;
+}
+
+.auth-btn:hover {
+  background: #e6d8b9;
+  transform: translateY(-2px);
+}
+
+/* Checkbox Styles */
+.lg-checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.lg-checkbox-input {
+  width: 20px;
+  height: 20px;
+  accent-color: #EFE3C8;
+  cursor: pointer;
+}
+
+.lg-checkbox-label {
+  font-family: "Alegreya", serif;
+  font-size: 18px;
+  color: #EFE3C8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .lg-right-panel {
+    width: 100%;
+  }
+  
+  .login-title {
+    font-size: 48px;
+  }
+  
+  .lg-form-label {
+    font-size: 24px;
+  }
+  
+  .auth-btn {
+    font-size: 18px;
+  }
+  
+  .login-content {
+    padding: 0 30px;
+  }
+}

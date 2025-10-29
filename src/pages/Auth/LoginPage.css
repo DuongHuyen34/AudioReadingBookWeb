@@ -1,0 +1,78 @@
+/* Typography */
+.title-login {
+  font-family: "Alegreya", serif;
+  font-size: 80px;
+  font-weight: 300;
+  color: #EFE3C8;
+  line-height: 0.9;
+  margin-bottom: 20px;
+}
+
+.subtitle-login {
+  font-family: "Alegreya", serif;
+  font-size: 48px;
+  font-weight: 300;
+  color: #EFE3C8;
+  line-height: 1;
+  margin-bottom: 60px;
+}
+
+/* Buttons */
+.button-group-login {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+}
+
+.btn-login {
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-login.login-primary {
+  background: #EFE3C8;
+  color: #4B352A;
+}
+
+.btn-login.login-primary:hover {
+  background: #e6d8b9;
+  transform: translateY(-2px);
+}
+
+.btn-login.login-secondary {
+  background: transparent;
+  border: 2px solid #EFE3C8;
+  color: #EFE3C8;
+}
+
+.btn-login.login-secondary:hover {
+  background: rgba(239, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .right-panel {
+    width: 100%;
+  }
+  
+  .title-login {
+    font-size: 60px;
+  }
+  
+  .subtitle-login {
+    font-size: 36px;
+  }
+  
+  .btn-login {
+    font-size: 20px;
+  }
+}

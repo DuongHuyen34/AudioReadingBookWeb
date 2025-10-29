@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet');
+
+:root {
+    --bg:#F6F1E7;
+    --dark:#4b352a;
+    --accent:#efe3c8;
+    --read: #e2cd9c;
+    --listen: #31231c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.kbp-page {
+  min-height: 100vh;
+}
+
+/* Container chính */
+.kids-page-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    background-image: 
+        url("../../assets/gif/may.gif"),
+        url("../../assets/gif/sun.gif"), 
+        url("../../assets/gif/may.gif"),
+        url("../../assets/gif/bear.gif"),
+        url("../../assets/gif/cat.gif"),
+        url("../../assets/gif/dog.gif"),
+        url("../../assets/gif/pt.gif"),
+        url("../../assets/gif/spb.gif"),
+        url("../../assets/gif/flo.gif"); 
+        
+    background-repeat: 
+        no-repeat, no-repeat, no-repeat, no-repeat, no-repeat,
+        no-repeat, no-repeat, no-repeat, no-repeat;
+    background-position: 
+        2% 25%, 5% 10%, 95% 12%, 80% 45%, 75% 95%, 23% 45%,
+        99% 100%, 1% 97%, 28% 90%;
+    background-size: 
+        150px 100px, 150px 150px, 150px 100px, 120px 120px, 120px 120px, 100px 100px,
+        180px 190px, 150px 150px, 120px 120px;
+    overflow: hidden;
+}
+
+/* 1. Vỏ sách nền (Ảnh 1) */
+.book-bg-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* THÊM ẨN BAN ĐẦU VÀ ÁP DỤNG HIỆU ỨNG CHÍNH */
+    opacity: 0; 
+    animation: zoom-fly-in 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s 1 forwards;
+}
+
+.book-bg {
+    width: 1200px;
+    height: 700px;
+    object-fit: cover;
+}
+
+.book-search-absolute {
+    position: absolute;
+    top: 14%; 
+    left: 60%;
+    transform: translateX(-50%);
+    width: 160px; 
+    height: 30px;
+    background-color: #ffe100; 
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 10;
+}
+
+.book-search-absolute input {
+    width: 90%;
+    height: 100%;
+    padding: 0 10px;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    color: #4b352a; 
+}
+
+.search-icon-absolute {
+    color: #FF7700;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.page-nav-absolute {
+    position: absolute;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 10;
+    width: 70px; 
+    height: 70px;
+    color: #FF7700;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.left-btn-absolute {
+    left: calc(50% - 310px); 
+    top: calc(50% + 70px);
+    transform: translateY(-50%);
+}
+
+.right-btn-absolute {
+    right: calc(50% - 350px);
+    top: calc(50% + 65px);
+    transform: translateY(-50%);
+}
+
+@keyframes bounce-in-up {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 100%) scale(0.9); /* Bắt đầu ẩn và thấp hơn vị trí cuối */
+    }
+    60% {
+        opacity: 1;
+        transform: translate(-50%, -45%) scale(1.05); /* Vượt quá vị trí cuối (nhún lên) */
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1); /* Kết thúc tại vị trí chuẩn */
+    }
+}
+
+@keyframes zoom-fly-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1) rotate(45deg); /* Bắt đầu rất nhỏ và xoay */
+    }
+    
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg); /* Kết thúc tại vị trí chuẩn, xoay về 0 */
+    }
+}
+
+.book-content-frame {
+    position: absolute;
+    width: 700px; 
+    height: 600px; 
+    top: 64%;
+    left: 57%;
+    /* Thiết lập animation */
+    /* animation: bounce-in-up 1.2s ease-out 0.2s 1 forwards;  */
+    /* Chạy trong 1.2s, độ trễ 0.2s, 1 lần, giữ trạng thái cuối */
+    opacity: 0;
+    animation: zoom-fly-in 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.1s 1 forwards; 
+    /* Dùng cubic-bezier để tạo cú "pop" ngộ nghĩnh */
+    transform: translate(-64%, -57%);
+    padding: 100px 40px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px; 
+    box-sizing: border-box;
+}
+
+.tabs-container {
+    position: absolute; 
+    top: 35px; 
+    right: 35%;
+    display: flex;
+    gap: 15px; 
+    z-index: 5;
+}
+
+.tab-btn {
+    padding: 6px 15px;
+    border: 3px solid #ff7700;
+    border-radius: 25px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #ffc000, #ff7700); 
+    color: #ffffcc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4); 
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    box-shadow: 0 5px 0 #cc5500;
+}
+
+@keyframes wobble-hover {
+    0% { transform: rotate(0deg) scale(1.05); } /* Bắt đầu ở giữa, phóng to nhẹ */
+    25% { transform: rotate(10deg) scale(1.05); } /* Lắc sang phải 5 độ */
+    75% { transform: rotate(-5deg) scale(1.05); } /* Lắc sang trái 5 độ */
+    100% { transform: rotate(5deg) scale(1.05); } /* Trở về giữa */
+}
+
+/* 2. Định nghĩa Keyframes cho hiệu ứng Viền Phát Sáng Nhấp Nháy */
+@keyframes glowing-border {
+    0%, 100% { 
+        /* Gán 3 lớp Box-shadow: (1) Inside Highlight, (2) 3D Depth, (3) Phát sáng nhẹ */
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.5), 
+            0 5px 0 #cc5500, /* Shadow 3D ban đầu */
+            0 0 15px 5px rgba(255, 255, 0, 0.9); /* <- Hiệu ứng phát sáng vàng/cam nhẹ */
+    }
+    50% { 
+        /* Giữa chu kỳ với Phát Sáng Mạnh Hơn */
+        box-shadow: 
+            inset 0 1px 0 rgba(255, 255, 255, 0.5), 
+            0 5px 0 #cc5500, /* Shadow 3D giữ nguyên */
+            0 0 15px 5px rgba(255, 165, 0, 1); /* <- Phát sáng mạnh, màu cam rực */
+    }
+}
+
+.tab-btn:hover {
+    filter: brightness(1.2);
+    
+    animation: 
+        wobble-hover 0.5s infinite alternate ease-in-out, 
+        glowing-border 1.1s infinite alternate ease-in-out;
+    
+    transform: scale(1.05); 
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.5), 
+        0 8px 0 #cc5500, 
+        0 10px 15px rgba(204, 85, 0, 0.8);
+}
+
+.tab-btn.active {
+    background: linear-gradient(to top, #ffc000, #ff7700);
+    color: #4b352a;
+    box-shadow: 0 1px 0 #cc5500;
+    transform: translateY(4px); 
+    animation: none;
+}
+
+/* 6. Stories Grid */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 145px);
+    margin-top: 25px;
+    gap: 15px;
+    width: 100%;
+    max-height: 320px;
+    flex-grow: 1;
+}
+
+.story-item {
+    border-radius: 10px;
+    border: 2px solid #ffff99;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.story-item:hover {
+    transform: scale(1.05);
+}
+
+.story-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 7. Pagination Controls */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #4b0082;
+}
+
+.page-number-display {
+    margin: 0 auto;
+    font-weight: 500;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.pagination-buttons .nav-btn {
+    /* Styling cho nút nhỏ bên trong trang sách */
+    background: none;
+    border: 1px solid #9370db;
+    color: #4b0082;
+    padding: 5px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Thêm vào KidsBookPage.css */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.pagination-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ff9900;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ff9900;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #ff9900;
+    color: white;
+    transform: scale(1.1);
+}
+
+.pagination-btn.active {
+    background: #ff9900;
+    color: white;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Responsive cơ bản */
+@media (max-width: 900px) {
+    .book-bg {
+        width: 100%;
+        height: auto;
+    }
+    .book-content-frame {
+        width: 80%;
+        height: 60%;
+        padding: 80px 25px 20px 25px;
+    }
+    .stories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .book-search-absolute {
+        top: 10%;
+        width: 250px;
+    }
+    .page-nav-absolute {
+        display: none; 
+    }
+}
+

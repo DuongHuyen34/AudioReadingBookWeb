@@ -1,0 +1,86 @@
+.rgp-link-text {
+  color: #EFE3C8;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+.rgp-link-text:hover {
+  color: #CC9600;
+}
+
+/* Buttons */
+.auth-btn.rgp-primary {
+  background: #EFE3C8;
+  color: #4B352A;
+}
+
+.suth-btn.rgp-primary:hover {
+  background: #e6d8b9;
+  transform: translateY(-2px);
+}
+
+.auth-btn.rgp-google-btn {
+  background: transparent;
+  border: 2px solid #EFE3C8;
+  color: #EFE3C8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;  /* khoảng cách với icon GG */
+}
+
+.auth-btn.rgp-google-btn:hover {
+  background: rgba(239, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.rgp-google-icon {
+  font-size: 24px;
+}
+
+/* Sign in Link */
+.rgp-signin-link {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #EFE3C8;
+}
+
+.rgp-link-btn {
+  background: none;
+  border: none;
+  color: #EFE3C8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.rgp-link-btn:hover {
+  color: #CC9600;
+}
+
+
+.error-message {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Loading state */
+.auth-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.auth-btn:disabled:hover {
+    transform: none;
+    background: #EFE3C8;
+}

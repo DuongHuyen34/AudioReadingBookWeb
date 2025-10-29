@@ -1,0 +1,1122 @@
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+
+:root {
+  --accent: #efe3c8;
+  --dark: #4b352a;
+  --bg: #EFE3C8;
+  --light-bg: #F6F1E7;
+  --text: #333333;
+  --border: #e0e0e0;
+  --primary: #CC9600;
+  --primary-hover: #b8860b;
+  --secondary: #8B4513;
+  --success: #28a745;
+  --muted: #6c757d;
+  --gradient-1: linear-gradient(135deg, #EFE3C8 0%, #CA7842 100%);
+  --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-3: linear-gradient(135deg, #4facfe 0%, #B4DEBD 100%);
+  --gradient-4: linear-gradient(135deg, #B2CD9C 0%, #F0F2BD 100%);
+  --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 15px 35px rgba(0, 0, 0, 0.15);
+  --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+.books-page {
+  min-height: 100vh;
+}
+
+.books-main {
+  padding-top: 60px;
+  background: var(--light-bg);
+}
+
+/* Hero Section với Parallax */
+.books-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.bp-hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(135deg, rgba(75, 53, 42, 0.8) 0%, rgba(107, 75, 58, 0.7) 100%),
+    var(--books-bg) center/cover;
+  transform: translateY(0);
+  animation: parallax 20s ease-in-out infinite;
+}
+
+@keyframes parallax {
+  0%, 100% { transform: translateY(0) scale(1.1); }
+  50% { transform: translateY(-5%) scale(1.15); }
+}
+
+.bp-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.bp-hero-text {
+  color: var(--accent);
+}
+
+.bp-hero-title {
+  font-family: "Bona Nova", serif;
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  line-height: 1.1;
+}
+
+.bp-title-line {
+  display: block;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.bp-title-line:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.bp-title-line:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.bp-highlight {
+  background: linear-gradient(135deg, #CC9600 0%, #FF7700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.bp-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.bp-hero-subtitle {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--accent);
+  margin-bottom: 20px;
+  max-width: 700px;
+}
+
+/* Search Bar */
+.bp-hero-search {
+  margin-top: 40px;
+}
+
+.bp-search-container {
+  position: relative;
+  max-width: 500px;
+}
+
+.bp-search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--primary);
+  z-index: 2;
+}
+
+.bp-search-input {
+  width: 100%;
+  padding: 15px 15px 15px 60px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  color: var(--accent);
+  transition: all 0.3s ease;
+}
+
+.bp-search-input::placeholder {
+  color: rgba(239, 227, 200, 0.7);
+}
+
+.bp-search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(204, 150, 0, 0.3);
+}
+
+.bp-search-decoration {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+}
+
+.bp-floating-book {
+  position: absolute;
+  width: 30px;
+  height: 40px;
+  background: var(--primary);
+  border-radius: 4px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.bp-floating-book:nth-child(1) {
+  top: 20px;
+  left: 10px;
+  animation-delay: 0s;
+  background: var(--books-bg) center/cover;
+}
+
+.bp-floating-book:nth-child(2) {
+  top: 45px;
+  left: 50px;
+  animation-delay: 2s;
+  background: var(--books-bg) center/cover;
+}
+
+.bp-floating-book:nth-child(3) {
+  top: 10px;
+  left: 90px;
+  animation-delay: 4s;
+  background: var(--books-bg) center/cover;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Featured Books Carousel với luật gần xa */
+.bp-featured-books {
+  position: relative;
+}
+
+.bp-featured-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  color: var(--accent);
+}
+
+.bp-featured-icon {
+  font-size: 32px;
+  color: var(--primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.bp-featured-header h3 {
+  font-family: "Bona Nova", serif;
+  font-size: 36px;
+  margin: 0;
+}
+
+.bp-featured-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 40px;
+  height: 320px;
+}
+
+/* Kệ sách */
+.bp-featured-carousel::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 2%;
+  right: 5%;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 2px;
+  box-shadow: 0 -2px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+/* Luật gần xa - kích thước giảm dần */
+.bp-featured-book {
+  position: relative;
+  width: 180px;
+  height: 270px;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: bottom center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.bp-featured-book:nth-child(1) {
+    /* To nhất */
+    transform: scale(1.1) translateX(10px); 
+    opacity: 1;
+    z-index: 3; 
+}
+
+.bp-featured-book:nth-child(2) {
+    /* Nhỏ hơn */
+    transform: scale(0.9) translateX(30px);
+    opacity: 0.95;
+    z-index: 2;
+}
+
+.bp-featured-book:nth-child(3) {
+    /* Nhỏ hơn nữa */
+    transform: scale(0.7) translateX(10px); 
+    opacity: 0.9;
+    z-index: 1;
+}
+
+/* Các cuốn còn lại nếu có */
+.bp-featured-book:nth-child(n+4) {
+    transform: scale(0.5);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Hover effects */
+.bp-featured-book:hover {
+  transform: scale(1.2) translateY(-20px) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  z-index: 4 !important;
+}
+
+.book-glow {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: var(--book-color);
+  border-radius: 12px;
+  opacity: 0.3;
+  filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.bp-featured-book:hover .book-glow {
+  opacity: 0.7;
+  filter: blur(30px);
+}
+
+.bp-featured-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--shadow-large);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.bp-featured-book:hover .bp-featured-cover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.bp-featured-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 15px 10px 10px;
+  border-radius: 0 0 8px 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.bp-featured-book:hover .bp-featured-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bp-featured-overlay h4 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.8rem;
+  margin: 0 0 5px 0;
+  line-height: 1.2;
+}
+
+.bp-featured-overlay p {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.7rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Main Content */
+.bp-books-content {
+  background: var(--light-bg);
+}
+
+.bp-books-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Controls Bar với các nút genre */
+.bp-controls-bar {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background: transparent;
+  margin-top: 30px;
+}
+
+.bp-genre-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bp-genre-btn {
+  padding: 12px 20px;
+  border: 2px solid var(--primary);
+  background: white;
+  border-radius: 25px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.bp-genre-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-5px);
+}
+
+.bp-genre-btn.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 5px 15px rgba(204, 150, 0, 0.3);
+}
+
+/* .bp-controls-right {
+  display: flex;
+  align-items: center;
+}
+
+.bp-sort-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--light-bg);
+  border-radius: 15px;
+}
+
+.bp-sort-icon {
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.bp-sort-select {
+  border: none;
+  background: transparent;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  cursor: pointer;
+  appearance: none;
+  padding-right: 25px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23CC9600' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.bp-sort-select:focus {
+  outline: none;
+} */
+
+/* Books Shelf Section với hover mới */
+/* .bp-books-shelf-section {
+  margin: 20px 0;
+}
+
+.bp-shelf-title {
+  font-family: "Bona Nova", serif;
+  font-size: 40px;
+  text-align: center;
+  color: var(--dark);
+}
+
+.bp-shelves-group {
+  position: relative;
+}
+
+.bp-shelf-container {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.bp-shelf-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.bp-shelf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 10%;
+}
+
+.bp-shelf-item {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.bp-shelf-item-img {
+  position: relative;
+}
+
+.bp-shelf-img {
+  width: 150px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.bp-shelf-img.hovered {
+  transform: translateY(-25px) scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+} */
+
+/* Tên sách hiện dưới sách khi hover */
+/* .bp-book-title-overlay {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 11;
+  animation: fadeInUp 0.3s ease;
+}
+
+.bp-book-title-overlay::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid rgba(0, 0, 0, 0.8);
+} */
+
+/* Icon hiện trên mặt sách khi hover */
+/* .bp-book-icons-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 15px;
+  z-index: 12;
+  animation: fadeIn 0.3s ease;
+}
+
+.bp-shelf-icon {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.bp-read-icon {
+  background: var(--primary);
+  color: white;
+}
+
+.bp-listen-icon {
+  background: var(--accent);
+  color: white;
+}
+
+.bp-shelf-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+} */
+
+/* --- CSS BooksPage.css (Books Shelf Section) --- */
+
+/* 4. Books Shelf Section - BASE */
+.bp-books-shelf-section {
+    padding: 50px 0 10px; /* Thêm padding cho section */
+    margin: 20px 0; /* Giữ lại margin cũ */
+}
+
+.bp-books-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Shelf Title Container */
+.bp-shelf-title-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.bp-shelf-title {
+  font-family: "Bona Nova", serif;
+  font-size: 40px;
+  color: var(--dark);
+  margin: 0 0 5px 0;
+  display: block;
+}
+
+/* Kids Explore Banner */
+.bp-kids-explore-banner {
+  background: transparent;
+  margin: 0 auto 30px auto;
+  text-align: center;
+  animation: pulse 2s infinite;
+  max-width: 500px;
+}
+
+.bp-kids-explore-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.bp-kids-explore-text {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.bp-kids-explore-btn {
+  background: transparent;
+  border: none;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bp-kids-explore-btn:hover {
+  color: var(--primary-hover);
+}
+.bp-kids-explore-text:hover {
+  color: var(--primary-hover);
+}
+
+.bp-kids-explore-btn svg {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* No books message */
+.bp-no-books {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--dark);
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.2rem;
+}
+
+.bp-shelves-group {
+    position: relative;
+    gap: 60px;
+    margin-top: 180px;
+    margin-bottom: 20px;
+}
+
+.bp-shelf-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.bp-shelf-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.bp-shelf {
+    position: absolute;
+    /* top: -93px; */
+    left: 0;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    /* padding: 0 30px; */
+}
+
+/* --- HIỆU ỨNG CHUNG CỦA SÁCH TRÊN KỆ --- */
+.bp-shelf-item {
+    position: relative;
+    z-index: 1; 
+    width: 120px; 
+    margin-top: 20px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth transition */
+    cursor: pointer;
+}
+
+.bp-shelf-item:hover {
+    transform: translateY(-20px) scale(1.1); /* Nâng sách lên */
+    z-index: 10;
+}
+
+.bp-shelf-item-img {
+    position: relative;
+    border-radius: 4px;
+    width: 120px;
+    height: 192px;
+}
+
+.bp-shelf-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.bp-shelf-item-img.bp-glow-effect {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.bp-shelf-item-img.bp-glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite linear;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* --- HIỆU ỨNG GLOW (PHÁT SÁNG) --- */
+.bp-book-glow-effect {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: var(--book-color); /* Lấy màu từ biến CSS */
+    border-radius: 10px;
+    filter: blur(25px);
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.4s ease;
+    pointer-events: none; /* Quan trọng: Đảm bảo không chặn click */
+}
+
+.bp-shelf-item:hover .bp-book-glow-effect {
+    opacity: 0.6; /* Hiện glow khi hover */
+}
+
+/* --- TÊN SÁCH HIỆN DƯỚI (OVERLAY) --- */
+.bp-book-title-overlay {
+    position: absolute;
+    bottom: -35px; /* Đặt dưới sách */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 11;
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.4s ease;
+    pointer-events: none; /* Quan trọng: Không chặn click/hover */
+}
+
+.bp-shelf-item:hover .bp-book-title-overlay {
+    opacity: 1; /* Hiện tên sách khi hover */
+}
+
+.bp-book-title-overlay::after {
+    /* Mũi tên trỏ lên */
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgba(0, 0, 0, 0.8);
+}
+
+
+/* --- ICON HIỆN TRÊN MẶT SÁCH (OVERLAY) --- */
+.bp-book-icons-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    opacity: 0; /* Mặc định ẩn */
+    transition: opacity 0.4s ease;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+.bp-shelf-item:hover .bp-book-icons-overlay {
+    opacity: 1; /* Hiện icon khi hover */
+}
+
+.bp-shelf-icon {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.bp-read-icon {
+    background: var(--primary);
+    color: white;
+}
+
+.bp-listen-icon {
+    /* Sử dụng màu phụ hoặc accent color cho icon nghe */
+    background: var(--accent); 
+    color: var(--dark);
+}
+
+.bp-shelf-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* AnyFlip Section */
+.anyflip-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 80px;
+}
+
+.anyflip-section iframe {
+  border-radius: 12px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Load More Button */
+.bp-load-more-section {
+  text-align: center;
+  margin-top: -100px;
+}
+
+.bp-load-more-btn {
+  position: relative;
+  padding: 18px 30px;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--light-bg);
+  border: none;
+  border-radius: 50px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.bp-load-more-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(204, 150, 0, 0.4);
+}
+
+.bp-btn-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.bp-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.bp-sparkle:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.bp-sparkle:nth-child(2) {
+  top: 70%;
+  left: 70%;
+  animation-delay: 0.5s;
+}
+
+.bp-sparkle:nth-child(3) {
+  top: 30%;
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.bp-sparkle:nth-child(4) {
+  top: 80%;
+  left: 30%;
+  animation-delay: 1.5s;
+}
+
+.bp-sparkle:nth-child(5) {
+  top: 10%;
+  left: 80%;
+  animation-delay: 2.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .bp-hero-content {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    text-align: center;
+  }
+  
+  .bp-hero-title {
+    font-size: 3rem;
+  }
+  
+  .bp-featured-carousel {
+    gap: 15px;
+  }
+  
+  .bp-featured-book {
+    width: 150px;
+    height: 225px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bp-controls-bar {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .bp-controls-left {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .bp-genre-buttons {
+    justify-content: center;
+  }
+  
+  .bp-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .bp-featured-carousel {
+    gap: 10px;
+  }
+  
+  .bp-featured-book {
+    width: 120px;
+    height: 180px;
+  }
+  
+  .bp-shelf-img {
+    width: 60px;
+    height: 85px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bp-hero-title {
+    font-size: 2rem;
+  }
+  
+  .bp-featured-carousel {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: 20px;
+  }
+  
+  .bp-featured-book {
+    width: 140px;
+    height: 210px;
+    transform: scale(1) !important;
+  }
+  
+  .bp-featured-carousel:hover .bp-featured-book:not(:hover) {
+    transform: scale(0.9) !important;
+  }
+  
+  .bp-featured-book:hover {
+    transform: scale(1.1) translateY(-10px) !important;
+  }
+  
+  .bp-shelf {
+    padding: 0 5%;
+  }
+  
+  .bp-shelf-img {
+    width: 50px;
+    height: 75px;
+  }
+  
+  .anyflip-section iframe {
+    width: 100%;
+    height: 300px;
+  }
+}

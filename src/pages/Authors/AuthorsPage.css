@@ -1,0 +1,907 @@
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+:root {
+  --accent: #efe3c8;
+  --dark: #4b352a;
+  --bg: #EFE3C8;
+  --light-bg: #F6F1E7;
+  --text: #333333;
+  --border: #e0e0e0;
+  --primary: #CC9600;
+  --primary-hover: #b8860b;
+  --listen: #31231c;
+}
+
+.authors-page {
+  min-height: 100vh;
+}
+
+.authors-main {
+  padding-top: 80px;
+  background: var(--light-bg);
+}
+
+.authors-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero Section */
+.authors-hero {
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  color: var(--accent);
+  padding: 80px 0;
+  min-height: 100vh;
+}
+
+/* Background ảnh với overlay */
+.authors-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      linear-gradient(rgba(75, 53, 42, 0.8), rgba(75, 53, 42, 0.7)),
+      var(--authors-bg) center 75%/cover;
+    z-index: 0;
+    transform: translateY(0);
+    animation: parallax 20s ease-in-out infinite;
+}
+
+@keyframes parallax {
+  0%, 100% { transform: translateY(0) scale(1.1); }
+  50% { transform: translateY(-5%) scale(1.15); }
+}
+
+.authors-hero-text {
+  flex: 1;
+  z-index: 2;
+}
+
+.authors-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.authors-title {
+  font-family: "Bona Nova", serif;
+  font-size: 64px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #CC9600 0%, #FF7700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ap-title-line {
+  display: block;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.ap-title-line:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.ap-title-line:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.ap-highlight {
+  background: linear-gradient(135deg, #CC9600 0%, #FF7700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.ap-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 75%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #FFD700, transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.authors-subtitle {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 700px;
+}
+
+/* Search Box */
+.authors-search {
+  max-width: 600px;
+}
+
+.ap-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ap-search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: var(--primary);
+  z-index: 2;
+}
+
+.ap-search-input {
+  width: 100%;
+  padding: 15px 15px 15px 60px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.ap-search-input::placeholder {
+  color: rgba(239, 227, 200, 0.7);
+}
+
+.ap-search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 30px rgba(204, 150, 0, 0.3);
+}
+
+.ap-search-decoration {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 160px;
+  height: 150px;
+}
+
+.ap-floating-book {
+  position: absolute;
+  width: 35px;
+  height: 45px;
+  background: var(--primary);
+  border-radius: 4px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.ap-floating-book:nth-child(1) {
+  top: 20px;
+  left: 5px;
+  animation-delay: 0s;
+  background: var(--authors-bg) center/cover;
+}
+
+.ap-floating-book:nth-child(2) {
+  top: 30px;
+  left: 50px;
+  animation-delay: 2s;
+  background: var(--authors-bg) center/cover;
+}
+
+.ap-floating-book:nth-child(3) {
+  top: 10px;
+  left: 95px;
+  animation-delay: 4s;
+  background: var(--authors-bg) center/cover;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Stats */
+.authors-hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ap-stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: 300px;
+}
+
+.ap-stat-icon {
+  font-size: 28px;
+  color: var(--primary);
+}
+
+.ap-stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-stat-number {
+  font-family: "Bona Nova", serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.ap-stat-label {
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  color: var(--accent);
+}
+
+/* Section Headers */
+.ap-section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.ap-section-title {
+  font-family: "Bona Nova", serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--dark);
+}
+
+.ap-section-subtitle {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  color: #666;
+}
+
+.ap-star-icon {
+  color: #FFD700;
+  font-size: 12px;
+}
+
+.ap-clear-filters-btn {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ap-clear-filters-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* All Authors Section */
+.all-authors-section {
+  padding: 40px 0;
+  background: var(--light-bg);
+}
+
+.authors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+.author-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.author-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.author-card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.author-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.author-card:hover .author-card-image img {
+  transform: scale(1.05);
+}
+
+.author-card-content {
+  padding: 20px;
+}
+
+.author-card-name {
+  font-family: "Bona Nova", serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+.author-card-genre {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: var(--primary);
+  margin-bottom: 5px;
+}
+
+.author-card-country {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.author-card-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.author-card-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+
+.author-card-stats .stat-icon {
+  font-size: 12px;
+  color: var(--primary);
+}
+
+.author-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.author-card-popular h4 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+.author-card-popular ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.author-card-popular li {
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.author-card-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: var(--dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.author-card-btn:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* No Results */
+.ap-no-results {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.ap-no-results-icon {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+.ap-no-results h3 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 24px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.ap-no-results p {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+/* New Authors Grid Layout */
+.ap-authors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.ap-author-item {
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  cursor: pointer;
+}
+
+/* Phần hiển thị ban đầu - chỉ ảnh và tên */
+.ap-author-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.ap-author-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ap-author-name-overlay {
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8)); */
+  color: var(--dark);
+  padding: 15px 10px 10px;
+  font-family: "Bona Nova", serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Card hiện ra khi hover */
+.ap-author-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 550px;
+  height: 350px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: row;
+  z-index: 100;
+  overflow: hidden;
+  animation: fadeInUp 0.3s ease;
+}
+
+.ap-author-item:hover .ap-author-card {
+  display: flex;
+}
+
+.ap-author-item:hover .ap-author-img {
+  transform: scale(0.9);
+  border-radius: 10px 0 0 10px;
+}
+
+/* Card content với ảnh */
+.ap-author-card-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-radius: 15px;
+}
+
+.ap-author-card-image {
+  flex: 0 0 200px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.ap-author-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ap-author-card:hover .ap-author-card-img {
+  transform: scale(1.05);
+}
+
+.ap-author-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ap-author-card-name {
+  font-family: "Bona Nova", serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.ap-author-card-genre {
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.ap-author-card-country {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.ap-author-card-stats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.ap-author-card-stats .ap-stat {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.ap-author-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.ap-author-card-popular h4 {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--dark);
+}
+
+.ap-author-card-popular ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.ap-author-card-popular li {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.ap-author-card-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: var(--dark);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.ap-author-card-btn:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Load More Button */
+.ap-load-more-section {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.ap-load-more-btn {
+  position: relative;
+  padding: 18px 30px;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: var(--light-bg);
+  border: none;
+  border-radius: 50px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.ap-load-more-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgba(204, 150, 0, 0.4);
+}
+
+.ap-btn-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.ap-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.ap-sparkle:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.ap-sparkle:nth-child(2) {
+  top: 70%;
+  left: 70%;
+  animation-delay: 0.5s;
+}
+
+.ap-sparkle:nth-child(3) {
+  top: 30%;
+  left: 50%;
+  animation-delay: 1s;
+}
+
+.ap-sparkle:nth-child(4) {
+  top: 80%;
+  left: 30%;
+  animation-delay: 1.5s;
+}
+
+.ap-sparkle:nth-child(5) {
+  top: 10%;
+  left: 80%;
+  animation-delay: 2.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* CTA Section */
+.authors-cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--dark) 0%, #5c4033 100%);
+  color: white;
+  text-align: center;
+}
+
+.ap-cta-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ap-cta-icon {
+  font-size: 48px;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.ap-cta-title {
+  font-family: "Bona Nova", serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.ap-cta-description {
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.ap-cta-button {
+  padding: 15px 30px;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--primary);
+  border-radius: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ap-cta-button:hover {
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .authors-hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .authors-title {
+    font-size: 36px;
+  }
+
+  .authors-hero-stats {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .featured-author-card {
+    flex-direction: column;
+  }
+
+  .author-image {
+    flex: 0 0 200px;
+  }
+
+  .ap-filters-container {
+    align-items: center;
+  }
+
+  .ap-genre-filters, .letter-filters {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .authors-title {
+    font-size: 28px;
+  }
+
+  .ap-section-title {
+    font-size: 28px;
+  }
+
+  .authors-hero-stats {
+    flex-direction: column;
+  }
+
+  .featured-authors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .authors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ap-author-card-content {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .ap-author-card-image {
+    flex: 0 0 80px;
+    height: 100px;
+  }
+  
+  .ap-author-card-name {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ap-author-card-content {
+    padding: 10px;
+    gap: 12px;
+    flex-direction: column;
+  }
+  
+  .ap-author-card-image {
+    flex: 0 0 80px;
+    height: 100px;
+    align-self: center;
+  }
+  
+  .ap-author-card-name {
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .ap-author-card-stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

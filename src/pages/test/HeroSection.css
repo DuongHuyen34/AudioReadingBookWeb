@@ -1,0 +1,131 @@
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3e2e25;
+  color: #efe3c8;
+  padding: 80px 100px;
+  gap: 80px;
+  min-height: 100vh;
+}
+
+.hero-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  width: 90%;
+  max-width: 550px;
+  animation: glow 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 15px rgba(255, 210, 100, 0.5));
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(255, 210, 100, 0.2));
+  }
+  to {
+    filter: drop-shadow(0 0 25px rgba(255, 210, 100, 0.8));
+  }
+}
+
+.hero-right {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-title {
+  font-family: "Alegreya", serif;
+  font-size: 46px;
+  font-weight: 700;
+  color: #efe3c8;
+  line-height: 1.3;
+}
+
+.highlight {
+  color: #e0b95e;
+}
+
+.hero-subtitle {
+  font-family: "Alegreya", serif;
+  font-size: 24px;
+  color: #e0b95e;
+}
+
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #e8dcc1;
+  max-width: 550px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 100px;
+}
+
+.stat-icon {
+  font-size: 26px;
+  color: #e0b95e;
+  margin-bottom: 8px;
+}
+
+.stat-number {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff2d0;
+}
+
+.stat-label {
+  font-size: 16px;
+  color: #d6c8a5;
+}
+
+.hero-btn {
+  background-color: transparent;
+  border: 2px solid #e0b95e;
+  color: #e0b95e;
+  padding: 12px 30px;
+  font-size: 18px;
+  font-family: "Alegreya", serif;
+  cursor: pointer;
+  margin-top: 25px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.hero-btn:hover {
+  background-color: #e0b95e;
+  color: #3e2e25;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 50px 30px;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-right {
+    align-items: center;
+  }
+
+  .hero-btn {
+    align-self: center;
+  }
+}

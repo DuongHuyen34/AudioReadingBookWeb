@@ -1,0 +1,14 @@
+.ver-link-btn {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #EFE3C8;
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ver-link-btn:hover {
+  color: #CC9600;
+}

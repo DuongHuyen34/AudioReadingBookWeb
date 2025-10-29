@@ -1,0 +1,866 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet');
+
+:root {
+    --bg:#EFE3C8;
+    --dark:#4b352a;
+    --accent:#efe3c8;
+    --read: #e2cd9c;
+    --listen: #31231c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.bdp-body {
+    font-family: "Quicksand",sans-serif;
+    background: var(--bg);
+    color:var(--dark);
+}
+
+/* Breadcrumb */
+.bdp-breadcrumb {
+    color: #4b352a;
+    padding: 0;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Main layout */
+.bdp-main {
+    max-width: 1450px;
+    margin: 12px 200px 12px 50px;
+    display: flex;
+    align-items: flex-start;
+    gap: 70px;
+    padding: 0 18px;
+}
+
+/* Container chứa cả breadcrumb và left content */
+.bdp-sticky-sidebar {
+    flex-shrink: 0;
+    position: sticky;
+    top: 130px; /* Cách header */
+    height: fit-content;
+    width: 320px;
+    align-self: flex-start;
+}
+
+.bdp-left {
+    height: fit-content;
+    transition: top 0.3s ease;
+}
+
+/* Khi cuộn xuống, điều chỉnh vị trí sticky */
+.bdp-sticky-sidebar.scrolled {
+    top: 130px; /* Gần header hơn khi cuộn */
+}
+
+.bdp-book-img {
+    width: 300px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15)
+}
+
+/* Right content */
+.bdp-right {
+    flex:1;
+    margin-top: 150px;
+}
+
+.bdp-book-title {
+    font-family: "Quicksand",sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: -10px;
+    margin-bottom: 5px;
+    color: var(--dark)
+}
+
+.bdp-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 12px
+}
+
+.bdp-stars {
+    display: flex;
+    align-items: center;
+    gap: 3px
+}
+
+.bdp-star-title {
+    font-family: "Quicksand",sans-serif;
+    font-size: 20px;
+    color: var(--dark)
+}
+
+.bdp-star {
+    color: #cdbca8; 
+    font-size: 20px
+}
+
+.bdp-star.on {
+    color: #ffcc00
+}
+
+.bdp-rating-count {
+    color: var(--dark);
+    font-size: 20px;
+    margin-left: 6px
+}
+
+/* info */
+.bdp-info-row {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    font-family: "Quicksand",sans-serif;
+    font-size: 20px;
+    color: var(--dark)
+}
+.bdp-info-row .bdp-muted {
+    color: var(--dark);
+    font-size: 18px;
+    margin-top: 6px
+}
+
+/* CTA */
+.bdp-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 16px;
+    margin-top: 15px;
+}
+
+.bdp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    height: auto;
+    padding: 10px 30px;
+    margin-top: 30px;
+    border-radius: 50px;
+    border: 3px solid var(--dark);
+    cursor: pointer;
+    font-family: "Quicksand",sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bdp-btn-img {
+    background: transparent;
+}
+
+.bdp-btn.primary {
+    gap: 10px;
+    background: var(--dark);
+    color: var(--accent);
+}
+
+.bdp-btn.primary:hover {
+    transform: scale(1.05);
+}
+
+.bdp-btn.primary.active {
+    background: var(--accent);
+    color: var(--dark);
+}
+
+.bdp-btn.outline {
+    gap: 10px;
+    background: transparent;
+    color: var(--dark);
+}
+
+.bdp-btn.outline:hover {
+    transform: scale(1.05);
+}
+
+.bdp-btn.outline.active {
+    background: var(--dark);
+    color: var(--accent)
+}
+
+.bdp-icon-small {
+    font-size: 35px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+/* Summary với giới hạn chiều cao */
+.bdp-summary {
+    background: transparent;
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    max-width: 800px;
+    font-family: "Quicksand",sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    position: relative;
+}
+
+.bdp-summary-collapsed {
+    max-height: 120px; /* Giới hạn chiều cao */
+    overflow: hidden;
+}
+
+.bdp-show-more-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, var(--bg) 10%);
+    border: none;
+    color: var(--dark);
+    font-family: "Quicksand", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 8px 8px 30px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.bdp-show-more-btn:hover {
+    color: #CC9600;
+}
+
+/* tabs */
+.bdp-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--dark);
+    padding-bottom: 5px;
+    gap: 30px;
+    margin: 6px 0 12px;
+}
+
+.bdp-tab {
+    font-family: "Quicksand",sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--dark);
+    background: transparent;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer
+}
+
+.bdp-tab:hover {
+    font-weight: 600;
+}
+
+.bdp-tab.active {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* chapters list */
+.bdp-chapters-list {
+    font-family: "Quicksand",sans-serif;
+    background: #f6f1e7;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03)
+}
+
+.bdp-chapter-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 6px;
+    border-bottom: 1px solid rgba(75, 53, 42, 0.3)
+}
+
+.bdp-chapter-item:last-child {
+    border-bottom:none
+}
+
+.bdp-ch-title {
+    font-size: 16px;
+    font-weight:600
+}
+
+.bdp-ch-date {
+    font-size:12px;
+    color:var(--dark)
+}
+
+.bdp-ch-actions {
+    display: flex;
+    align-items: center;
+    font-family: "Quicksand",sans-serif;
+    gap: 10px
+}
+.bdp-small-btn {
+    width: 100px;
+    height: auto;
+    padding: 8px 12px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer
+}
+
+.bdp-small-btn.primary {
+    background: var(--accent);
+    border: none;
+    color:var(--dark)
+}
+
+.bdp-small-btn.primary:hover {
+    transform: scale(1.05);
+    background: var(--read);
+}
+
+.bdp-small-btn.outline {
+    background: var(--dark);
+    border: none;
+    color:var(--accent)
+}
+
+.bdp-small-btn.outline:hover {
+    transform: scale(1.05);
+    background: var(--listen);
+}
+
+.bdp-tag-free {
+    color: #CC9600;
+    padding: 6px 8px;
+    font-size: 16px
+}
+
+/* pagination */
+.bdp-pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.bdp-pg {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--dark);
+    background: var(--accent);
+    padding: 6px 8px;
+    border-radius: 50%
+}
+
+.bdp-pg-img {
+    font-size: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Pagination cho chapters */
+.bdp-pg-active {
+    background: var(--dark) !important;
+    color: var(--accent) !important;
+}
+
+.bdp-pg:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* comments */
+.bdp-comments-area {
+    margin-top: 20px
+}
+
+.bdp-comment-card {
+    background: rgba(75, 53, 42, 0.8);
+    padding: 20px 20px 20px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    margin-bottom: 10px;
+}
+
+.bdp-comment-card-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+}
+
+.bdp-comment-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.bdp-avatar-small {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bdp-comment-user {
+    font-family: "Quicksand",sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.bdp-comment-time {
+    font-size: 16px;
+    color: var(--accent);
+    margin-left: 8px
+}
+
+.bdp-comment-body {
+    font-family: "Quicksand",sans-serif;
+    font-size: 16px;
+    margin-top: 6px;
+    margin-left: 60px;
+    color: var(--accent)
+}
+
+.bdp-comment-card-note {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 750px;
+    height: 80px;
+    margin: 15px;
+    background: rgba(49, 35, 28, 0.3);
+    border-radius: 8px;
+}
+
+.bdp-note-img {
+    position: absolute;
+    width: 20px;
+    height: auto;
+    object-fit: cover;
+    filter: hue-rotate(-180deg) saturate(3) brightness(2.5);
+}
+.bdp-note-text {
+    max-width: 550px;
+    font-family: "Quicksand",sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+}
+
+/* comment form */
+.bdp-comment-form textarea {
+    width:100%;
+    min-height:100px;
+    padding:12px;
+    border-radius:8px;
+    border:2px solid rgba(0,0,0,0.05);
+    background:transparent;
+    color:var(--dark);
+    resize:vertical
+}
+.bdp-comment-form-row {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-top:10px
+}
+.bdp-checkbox-group {
+    display:flex;
+    align-items:center;
+    gap:12px
+}
+.bdp-checkbox-group input {
+    width:20px;
+    height:20px
+}
+.bdp-checkbox-label {
+    font-family:"Alegreya",serif;
+    font-size:18px;
+    color:var(--accent)
+}
+.bdp-link-text {
+    color:var(--accent);
+    text-decoration:underline;
+    cursor:pointer;
+    margin:0 4px
+}
+
+/* Load more cho comments */
+.bdp-load-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bdp-load-more-btn {
+    background: var(--dark);
+    color: var(--accent);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bdp-load-more-btn:hover {
+    background: var(--listen);
+    transform: translateY(-2px);
+}
+
+/* recommend shelf */
+.bdp-recommend {
+    position: relative;
+    border-top: 2px solid var(--dark);
+    max-width: 1100px;
+    margin: 30px auto 0;
+    padding: 0 18px
+}
+
+.bdp-recommend h3 {
+    font-family: "Quicksand",sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 12px
+}
+
+.bdp-shelf-container {
+    position: relative;
+    display: inline-block; /* hoặc block tùy layout */
+    margin: 20px auto;
+}
+
+.bdp-shelf-bg {
+    width: 1100px;
+    height: auto;
+    display: block;
+}
+
+.bdp-shelf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 110px);
+    gap: 18px;
+    align-items: flex-end; /* Căn sách xuống dưới (chân kệ) */ 
+    padding: 0 40px 30px 175px;
+    box-sizing: border-box;
+}
+.bdp-shelf-item {
+    width: 110px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.bdp-shelf-item:hover {
+    transform: translateY(-5px);
+}
+
+.bdp-shelf-item img {
+    width: 100px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Audio Player Styles */
+.bdp-audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: var(--accent);
+    padding: 20px 10px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    animation: slideUp 0.3s ease-out;
+}
+
+.bdp-audio-player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(rgba(75, 53, 42, 0.6), rgba(75, 53, 42, 0.6)),
+        var(--header-bg) bottom/cover;
+    z-index: -1;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.bdp-audio-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.bdp-audio-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.bdp-audio-book-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.bdp-audio-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.bdp-audio-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.bdp-audio-author {
+    font-family: "Quicksand", sans-serif;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.bdp-audio-listen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bdp-audio-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.bdp-audio-control-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: 25px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.bdp-audio-control-btn:hover {
+    transform: scale(1.1);
+    color: #CC9600;
+}
+
+.bdp-audio-play-btn {
+    background: var(--accent);
+    border: none;
+    color: var(--listen);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.bdp-audio-play-btn:hover {
+    transform: scale(1.1);
+}
+
+.bdp-audio-progress {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    justify-content: center;
+}
+
+.bdp-audio-time {
+    font-family: "Quicksand", sans-serif;
+    font-size: 14px;
+    min-width: 40px;
+}
+
+.bdp-audio-progress-bar {
+    flex: 1;
+    min-width: 400px;
+    height: 4px;
+    background: rgba(239, 227, 200, 0.3);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.bdp-audio-progress-filled {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    width: 30%; /* Điều chỉnh theo tiến độ thực tế */
+}
+
+.bdp-audio-vol {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex: 1;
+    margin-right: 40px;
+}
+
+.bdp-audio-vol-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bdp-audio-vol-btn:hover {
+    transform: scale(1.1);
+    color: #CC9600;
+}
+
+/* Volume Control Styles */
+.bdp-volume-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 5px;
+}
+
+.bdp-volume-slider {
+    width: 80px;
+    height: 4px;
+    background: rgba(239, 227, 200, 0.3);
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+}
+
+.bdp-volume-filled {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    width: 70%; /* Mặc định volume 70% */
+    transition: all 0.2s;
+}
+
+.bdp-volume-slider:hover {
+    height: 6px;
+}
+
+.bdp-volume-slider:hover .bdp-volume-filled {
+    background: #CC9600;
+    height: 6px;
+}
+
+.bdp-audio-close {
+    position: absolute;
+    top: -40px;
+    right: 20px;
+    background: var(--listen);
+    border: none;
+    color: var(--accent);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* responsive */
+@media (max-width:900px){
+  .bdp-main{flex-direction:column}
+  .bdp-left{width:100%;display:flex;justify-content:center;margin-bottom:12px}
+  .bdp-right{padding:0 12px}
+  .cover-area{padding:10px}
+}
+
+/* Responsive cho audio player */
+@media (max-width: 768px) {
+    .bdp-audio-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .bdp-audio-info {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .bdp-audio-progress {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .bdp-audio-progress-bar {
+        max-width: 200px;
+    }
+    
+    .bdp-volume-slider {
+        width: 60px;
+    }
+    
+    .bdp-audio-close {
+        top: -35px;
+        right: 10px;
+    }
+}

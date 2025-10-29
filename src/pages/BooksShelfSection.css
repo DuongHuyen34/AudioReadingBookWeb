@@ -1,0 +1,559 @@
+/* Books Shelf Display với hover card */
+.bp-books-shelf-section {
+  padding: 30px 0;
+  text-align: center;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+
+.bp-shelf-title {
+  font-family: "Bona Nova", serif;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--dark);
+}
+
+/* Multiple shelves */
+.bp-shelves-group {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: center;
+  margin: 170px auto;
+}
+
+.bp-shelf-container {
+  position: relative;
+  display: inline-block;
+}
+
+.bp-shelf-bg {
+  width: 1200px;
+  height: 130px;
+  display: block;
+}
+
+.bp-shelf {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 130px);
+  gap: 35px;
+  align-items: flex-end;
+  padding: 0 40px 90px 100px;
+  box-sizing: border-box;
+}
+
+.bp-shelf-item {
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+  /* transition: transform 0.3s ease; */
+  transition: none; 
+  cursor: pointer;
+  overflow: visible;
+}
+
+.bp-shelf-item:hover {
+  transform: scale(0.9);
+  z-index: 1000;
+}
+
+.bp-shelf-item-img {
+  position: relative;
+  width: 100%;
+  height: 195px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.bp-shelf-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.bp-shelf-item:hover .bp-shelf-item-img {
+  transform: scale(0.9);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Hiệu ứng vệt sáng continuous */
+.bp-shelf-item.glow-effect {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.bp-shelf-item.glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite linear;
+  z-index: 1;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Thông tin sách trên shelf */
+/* .bp-shelf-book-info {
+  margin-top: 8px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+}
+
+.bp-shelf-book-title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 2px;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.bp-shelf-book-author {
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  color: #666;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+} */
+
+/* Hiệu ứng cho text khi hover */
+/* .bp-shelf-item:hover .bp-shelf-book-title {
+  color: #CC9600;
+  text-shadow: 0 0 10px rgba(204, 150, 0, 0.3);
+}
+
+.bp-shelf-item:hover .bp-shelf-book-author {
+  color: #8B6B3D;
+} */
+
+/* Card thông tin hiện ra khi hover */
+.bp-book-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 250px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  display: none;
+  flex-direction: row;
+  z-index: 2000;
+  overflow: hidden;
+  /* animation: fadeInUp 0.3s ease; */
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.bp-shelf-item:hover .bp-book-card {
+  display: flex;
+}
+
+.ap-author-item:hover .ap-author-img {
+  transform: scale(0.5);
+  border-radius: 10px 0 0 10px;
+}
+
+.bp-book-card-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-radius: 15px;
+}
+
+.bp-book-card-image {
+  flex: 0 0 120px;
+  height: 145px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.bp-book-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bp-book-card:hover .bp-book-card-img {
+  transform: scale(1.05);
+}
+
+.bp-book-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bp-book-card-title {
+  font-family: "Bona Nova", serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--dark);
+  line-height: 1.2;
+}
+
+.bp-book-card-author {
+  font-family: "Quicksand", sans-serif;
+  font-size: 14px;
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.bp-book-card-meta {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.bp-book-card-rating, .bp-book-card-pages {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+  color: #666;
+}
+
+.bp-book-card-star {
+  color: #FFD700;
+  font-size: 12px;
+}
+
+.bp-book-card-pages-icon {
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.bp-book-card-genre {
+  display: inline-block;
+  padding: 4px 8px;
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.bp-book-card-description {
+  font-family: "Quicksand", sans-serif;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #666;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.bp-book-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.bp-book-card-read, .bp-book-card-details {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 15px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.bp-book-card-read {
+  background: var(--primary);
+  color: white;
+}
+
+.bp-book-card-read:hover {
+  background: #b8860b;
+  transform: translateY(-1px);
+}
+
+.bp-book-card-details {
+  background: transparent;
+  color: var(--dark);
+  border: 1px solid #ddd;
+}
+
+.bp-book-card-details:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* Responsive cho shelf */
+@media (max-width: 1200px) {
+  .bp-shelf-bg {
+    width: 900px;
+  }
+  
+  .bp-shelf {
+    padding: 0 30px 25px 140px;
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: 15px;
+  }
+  
+  .bp-shelf-item {
+    width: 90px;
+  }
+  
+  .bp-shelf-item img {
+    width: 85px;
+    height: 120px;
+  }
+  
+  .bp-book-card {
+    width: 450px;
+    height: 160px;
+  }
+  
+  .bp-book-card-image {
+    flex: 0 0 100px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bp-shelf-bg {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .bp-shelf {
+    padding: 0 20px 20px 80px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .bp-shelf-item {
+    width: 80px;
+  }
+  
+  .bp-shelf-item img {
+    width: 75px;
+    height: 105px;
+  }
+  
+  .bp-shelf-book-title {
+    font-size: 10px;
+  }
+  
+  .bp-shelf-book-author {
+    font-size: 8px;
+  }
+  
+  .bp-book-card {
+    width: 350px;
+    height: 140px;
+    top: -160px;
+  }
+  
+  .bp-book-card-content {
+    padding: 15px;
+    gap: 15px;
+  }
+  
+  .bp-book-card-image {
+    flex: 0 0 80px;
+    height: 100px;
+  }
+  
+  .bp-book-card-title {
+    font-size: 14px;
+  }
+  
+  .bp-book-card-author {
+    font-size: 12px;
+  }
+  
+  .bp-book-card-description {
+    font-size: 10px;
+    -webkit-line-clamp: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .bp-shelf {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 15px 15px 60px;
+  }
+  
+  .bp-shelf-title {
+    font-size: 32px;
+  }
+  
+  .bp-book-card {
+    width: 280px;
+    height: 120px;
+    top: -140px;
+  }
+  
+  .bp-book-card-content {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .bp-book-card-image {
+    flex: 0 0 60px;
+    height: 80px;
+  }
+  
+  .bp-book-card-title {
+    font-size: 12px;
+  }
+  
+  .bp-book-card-author {
+    font-size: 10px;
+  }
+  
+  .bp-book-card-meta {
+    gap: 8px;
+  }
+  
+  .bp-book-card-rating, .bp-book-card-pages {
+    font-size: 10px;
+  }
+  
+  .bp-book-card-actions {
+    gap: 5px;
+  }
+  
+  .bp-book-card-read, .bp-book-card-details {
+    padding: 4px 8px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .bp-book-card {
+    width: 450px;
+    height: 300px;
+    top: -180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bp-book-card {
+    width: 350px;
+    height: 250px;
+    top: -150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bp-book-card {
+    width: 280px;
+    height: 200px;
+    top: -120px;
+  }
+}
+
+
+/* Card thông tin ABSOLUTE mới */
+.bp-book-card-absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Kích thước lớn hơn sách gốc */
+  width: 350px; 
+  height: 250px; 
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  z-index: 5000; /* Rất cao để đảm bảo nằm trên mọi thứ */
+  overflow: hidden;
+  /* Animation nhẹ nhàng */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-5px); /* Hiệu ứng trượt nhẹ */
+  /* Display được quản lý bởi inline style trong JSX */
+}
+
+/* Sao chép nội dung card cũ vào class mới */
+.bp-book-card-content { /* Giữ nguyên các class cũ */
+  /* ... (Sao chép nội dung từ bp-book-card-content cũ) ... */
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-radius: 15px;
+}
+
+/* Đảm bảo item sách vẫn có hiệu ứng glow mà không bị cắt */
+.bp-shelf-item.glow-effect {
+  position: relative;
+  overflow: hidden; /* Giữ hidden để glow không tràn */
+  border-radius: 10px;
+}
+
+/* Loại bỏ transform: scale(0.9) khi hover trên item sách */
+.bp-shelf-item:hover {
+  transform: scale(1); /* Rất quan trọng */
+  z-index: 1000;
+}

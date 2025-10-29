@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Island+Moments&display=swap" rel="stylesheet');
+
+.footer {
+    position: relative;
+    background-color: rgba(32, 23, 19, 0.8);
+    color: #EFE3C8;
+    padding: 48px 20px 16px;
+    margin-top: auto;
+}
+
+/* Background ảnh với overlay */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--footer-bg) center 80%/cover;
+    z-index: -1;
+}
+
+.footer-hd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-hd-subtitle {
+    font-family: "Pinyon Script", cursive;
+    font-size: 100px;
+    font-weight: 100;
+}
+
+.footer-hd-title {
+    font-family: "Island Moments", cursive;
+    font-size: 250px;
+    font-weight: 100;
+    letter-spacing: 50px;
+}
+
+.footer-container {
+    max-width: 1800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 170px));
+    gap: 70px;
+    padding: 0 60px;
+}
+
+.footer-section h3 {
+    color: #EFE3C8;
+    margin-bottom: 20px;
+    font-family: "Quicksand", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+.footer-description {
+    color: #EFE3C8;
+    font-family: "Quicksand", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.footer-images {
+    width: 200px;
+    height: auto;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    display: flex;
+    align-items: center;
+    color: #EFE3C8;
+    font-family: "Quicksand", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-links-icon {
+    font-size: 35px;
+    cursor: pointer;
+    padding: 0 8px 0 0;
+    transition: transform 0.3s ease;
+}
+
+/* Footer Contact Section với ảnh */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+}
+
+.contact-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1); /* Chuyển ảnh sang màu trắng */
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-item span {
+    color: #EFE3C8;
+    font-family: "Quicksand", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.footer-bottom {
+    border-top: 1px solid #EFE3C8;
+    margin-top: 30px;
+    padding-top: 16px;
+    text-align: center;
+    color: #EFE3C8;
+    font-family: "Quicksand", sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .contact-item {
+        gap: 8px;
+    }
+    
+    .contact-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .contact-item span {
+        font-size: 13px;
+    }
+}

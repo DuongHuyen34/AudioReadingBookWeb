@@ -1,0 +1,117 @@
+.auth-btn.sgp-google-btn {
+  background: transparent;
+  border: 2px solid #EFE3C8;
+  color: #EFE3C8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;  /* khoảng cách với icon GG */
+}
+
+.auth-btn.sgp-google-btn:hover {
+  background: rgba(239, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.sgp-google-icon {
+  font-size: 24px;
+}
+
+.auth-btn.sgp-facebook-btn {
+  background: transparent;
+  border: 2px solid #EFE3C8;
+  color: #EFE3C8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;  /* khoảng cách với icon GG */
+}
+
+.auth-btn.sgp-facebook-btn:hover {
+  background: rgba(239, 227, 200, 0.1);
+  transform: translateY(-2px);
+}
+
+.sgp-facebook-icon {
+  font-size: 24px;
+}
+
+.auth-btn.sgp-login {
+  background: #EFE3C8;
+  color: #4B352A;
+}
+
+.auth-btn.sgp-login:hover {
+  background: #e6d8b9;
+  transform: translateY(-2px);
+}
+
+/* Divider */
+.sgp-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0;
+  gap: 10px;
+}
+
+.sgp-divider-line {
+  flex: 1;
+  height: 1px;
+  background: #EFE3C8;
+  opacity: 0.5;
+}
+
+.sgp-divider-text {
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #EFE3C8;
+  opacity: 0.8;
+  padding: 0 10px;
+}
+
+/* Checkbox Styles */
+.sgp-checkbox-forgot-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.sgp-link-forgot {
+  background: none;
+  border: none;
+  color: #EFE3C8;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: "Alegreya", serif;
+  transition: all 0.2s ease;
+}
+
+.sgp-link-forgot:hover {
+  color: #e6d8b9;
+  text-decoration: underline;
+}
+
+/* Sign in Link */
+.sgp-register-link {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #EFE3C8;
+}
+
+.sgp-link-btn {
+  background: none;
+  border: none;
+  color: #EFE3C8;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.sgp-link-btn:hover {
+  color: #CC9600;
+}
