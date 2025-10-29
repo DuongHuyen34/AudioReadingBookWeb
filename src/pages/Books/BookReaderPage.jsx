@@ -785,6 +785,8 @@ function BookReaderPage() {
     const currentChapterAudio = book?.chaptersDetail[currentChapterIndex]?.audioUrl;
     // (Các hàm audio player: handleListenBook, closeAudioPlayer, handleVolumeChange, toggleMute, getVolumeIcon GIỮ NGUYÊN)
     const [volume, setVolume] = useState(70);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
     
     const handleVolumeChange = useCallback((e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -814,8 +816,19 @@ function BookReaderPage() {
             audioRef.current?.pause();
             setIsAudioPlaying(false);
         } else {
-            audioRef.current.src = currentChapterAudio;
-            audioRef.current?.play().catch(e => console.error("Error playing audio:", e));
+            // src đã được React cập nhật tự động qua useEffect và JSX
+            // Chỉ cần play
+            setTimeout(() => {
+                if (audioRef.current && audioRef.current.readyState >= 2) {
+                    audioRef.current?.play().catch(e => console.error("Error playing audio:", e));
+                } else {
+                    const playAfterLoad = () => {
+                        audioRef.current?.play().catch(e => console.error("Error playing audio:", e));
+                        audioRef.current?.removeEventListener('loadedmetadata', playAfterLoad);
+                    };
+                    audioRef.current?.addEventListener('loadedmetadata', playAfterLoad);
+                }
+            }, 100);
             setIsAudioPlaying(true);
             setShowAudioPlayer(true);
         }
@@ -825,6 +838,95 @@ function BookReaderPage() {
         audioRef.current?.pause();
         setIsAudioPlaying(false);
         setShowAudioPlayer(false);
+    };
+
+    // Định dạng thời gian
+    const formatTime = useCallback((sec) => {
+        if (!isFinite(sec)) return "0:00";
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60);
+        return `${m}:${s.toString().padStart(2, '0')}`;
+    }, []);
+
+    // Events
+    const onLoadedMetadata = useCallback(() => {
+        if (audioRef.current && isFinite(audioRef.current.duration)) {
+            setDuration(audioRef.current.duration);
+        }
+    }, []);
+
+    const onCanPlay = useCallback(() => {
+        if (audioRef.current && isFinite(audioRef.current.duration)) {
+            setDuration(audioRef.current.duration);
+        }
+    }, []);
+
+    const onTimeUpdate = useCallback(() => {
+        if (audioRef.current) {
+            setCurrentTime(audioRef.current.currentTime);
+            if (isFinite(audioRef.current.duration)) setDuration(audioRef.current.duration);
+        }
+    }, []);
+
+    const onEnded = useCallback(() => {
+        setIsAudioPlaying(false);
+    }, []);
+
+    useEffect(() => {
+        const el = audioRef.current;
+        if (!el) return;
+        el.addEventListener('loadedmetadata', onLoadedMetadata);
+        el.addEventListener('timeupdate', onTimeUpdate);
+        el.addEventListener('canplay', onCanPlay);
+        el.addEventListener('ended', onEnded);
+        return () => {
+            el.removeEventListener('loadedmetadata', onLoadedMetadata);
+            el.removeEventListener('timeupdate', onTimeUpdate);
+            el.removeEventListener('canplay', onCanPlay);
+            el.removeEventListener('ended', onEnded);
+        };
+    }, [onLoadedMetadata, onTimeUpdate, onCanPlay, onEnded]);
+
+    // Cập nhật audio khi currentChapterAudio thay đổi
+    useEffect(() => {
+        if (!audioRef.current) return;
+        
+        if (!currentChapterAudio) {
+            setDuration(0);
+            setCurrentTime(0);
+            return;
+        }
+        
+        // Reset duration và currentTime khi chuyển chương mới
+        setDuration(0);
+        setCurrentTime(0);
+        
+        // Đảm bảo crossOrigin và preload được set
+        audioRef.current.crossOrigin = 'anonymous';
+        audioRef.current.preload = 'metadata';
+        
+        // Load metadata (src đã được React cập nhật tự động từ JSX với full URL)
+        audioRef.current.load().catch(() => {
+            // ignore
+        });
+    }, [currentChapterAudio]);
+
+    // Seek controls
+    const seekBy = (delta) => {
+        if (!audioRef.current) return;
+        const next = Math.max(0, Math.min((duration || 0), (audioRef.current.currentTime || 0) + delta));
+        audioRef.current.currentTime = next;
+        setCurrentTime(next);
+    };
+
+    const handleProgressClick = (e) => {
+        if (!audioRef.current || !duration) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const offsetX = e.clientX - rect.left;
+        const ratio = Math.max(0, Math.min(1, offsetX / rect.width));
+        const next = ratio * duration;
+        audioRef.current.currentTime = next;
+        setCurrentTime(next);
     };
 
     // --- LOGIC CÀI ĐẶT ---
@@ -909,20 +1011,20 @@ function BookReaderPage() {
                                 <div className="br-audio-controls">
                                     <button className="br-audio-control-btn"><GoHeart /></button>
                                     <button className="br-audio-control-btn"><TbAdjustmentsHorizontal /></button>
-                                    <button className="br-audio-control-btn"><FaBackward /></button>
+                                    <button className="br-audio-control-btn" onClick={() => seekBy(-15)}><FaBackward /></button>
                                     <button className="br-audio-play-btn" onClick={handleListenBook}>
                                         {isAudioPlaying ? <FaPause /> : <FaPlay />}
                                     </button>
-                                    <button className="br-audio-control-btn"><FaForward /></button>
+                                    <button className="br-audio-control-btn" onClick={() => seekBy(15)}><FaForward /></button>
                                     <button className="br-audio-control-btn"><FaRandom /></button>
                                     <button className="br-audio-control-btn"><FaRegClock /></button>
                                 </div>
                                 <div className="br-audio-progress">
-                                    <div className="br-audio-time">0:25</div>
-                                    <div className="br-audio-progress-bar">
-                                        <div className="br-audio-progress-filled" style={{ width: `20%` }}></div>
+                                    <div className="br-audio-time">{formatTime(currentTime)}</div>
+                                    <div className="br-audio-progress-bar" onClick={handleProgressClick}>
+                                        <div className="br-audio-progress-filled" style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}></div>
                                     </div>
-                                    <div className="br-audio-time">1:34</div>
+                                    <div className="br-audio-time">{formatTime(duration)}</div>
                                 </div>
                             </div>
                             
@@ -941,7 +1043,6 @@ function BookReaderPage() {
                                 ×
                             </button>
                         </div>
-                        <audio ref={audioRef} src={currentChapterAudio} className="br-hidden-audio" />
                     </div>
                 )}
 
@@ -1172,7 +1273,13 @@ function BookReaderPage() {
                 <Footer />
             </div>
             {/* Hidden Audio Element */}
-            <audio ref={audioRef} className="br-audio-element" />
+            <audio 
+                ref={audioRef} 
+                className="br-audio-element"
+                src={currentChapterAudio ? `http://localhost:5000${currentChapterAudio}` : undefined}
+                crossOrigin="anonymous"
+                preload="metadata"
+            />
         </div>
     );
 }
